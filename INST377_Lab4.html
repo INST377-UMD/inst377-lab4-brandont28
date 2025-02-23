@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Lab 4</title>
+    <!--CSS Styling-->
+    <style>
+      body {
+        background-color: lightblue;
+      }
+      #actions {
+        display: inline-block;
+        text-align: center;
+        background-color: violet;
+        border: 3px solid white;
+        border-radius: 15px;
+        padding: 20px;
+        margin: 20px;
+        width: 40%;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <h1 id="pageHeader">INST377 - Lab 4</h1>
+    </header>
+
+    <!--Alert Me-->
+    <form id="actions" name="alerter" onsubmit="return alertMe()">
+      <label for="name">Name:</label>
+      <input type="text" id="name" required />
+      <input type="submit" value="Alert Me!" />
+    </form>
+
+    <!--Color Changer-->
+    <button id="actions" onclick="changeColor()">Change Color</button>
+
+    <!--Text Tester-->
+    <form id="actions" name="tester" onsubmit="return textTester()">
+      <label for="inputText">Text Tester:</label>
+      <input type="text" id="inputText" />
+      <input type="submit" value="Validate Text" />
+    </form>
+
+    <!--Add Text-->
+    <button id="actions" onclick="addText()">Add Text</button>
+
+    <!--Javascript Code-->
+    <script type="text/javascript">
+      function alertMe() {
+        console.log(
+          "Alerting user inputted name: ",
+          document.alerter.name.value
+        );
+        alert("Hello " + document.alerter.name.value + "!");
+      }
+
+      function changeColor() {
+        console.log(
+          "Attempting to change color, current background color is: ",
+          document.body.style.backgroundColor
+        );
+
+        if (document.body.style.backgroundColor == "lightgreen") {
+          document.body.style.backgroundColor = "lightblue";
+        } else {
+          document.body.style.backgroundColor = "lightgreen";
+        }
+
+        console.log(
+          "Successfully changed, current background color is: ",
+          document.body.style.backgroundColor
+        );
+      }
+
+      function textTester() {
+        console.log("Validating user input: ", document.tester.inputText.value);
+        const validationRegex = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+
+        if (document.tester.inputText.value.trim() == "") {
+          // Removes whitespace and checks if empty
+          alert("How about...nah");
+          return false;
+        }
+
+        if (validationRegex.test(document.tester.inputText.value)) {
+          alert("How about...nah");
+          return false;
+        }
+      }
+
+      function addText() {
+        console.log("Adding text to header");
+        document.getElementById("pageHeader").textContent =
+          "INST377 - Lab 4 - Adding Text";
+      }
+    </script>
+  </body>
+</html>
